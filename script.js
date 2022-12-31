@@ -1,13 +1,48 @@
-console.log("connection test1")
-console.log("hello world")
-
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+let timeBlockNotes = [];
+
+// let localStorageTimeBlockNotes = JSON.parse(localStorage.getItem("TimeBlockNotes"));
+// if (!localStorageTimeBlockNotes) {
+//   localStorageTimeBlockNotes = [];
+// } 
+
+
+//Pushing the score to local storage
+// localStorageTimeBlockNotes.push(note);
+
+//Permanently updates our local storage high scores
+// localStorage.setItem("TimeBlockNotes", JSON.stringify(localStorageTimeBlockNotes))
+
 $(function () {
   // TODO: Add a listener for click events on the save button. 
-  
-  //This code should use the id in the containing time-block as a key to save the user input in local storage. 
+
+  $('.saveBtn').on('click', (event) => {
+    //This code should use the id in the containing time-block as a key to save the user input in local storage.
+    console.log("save-button click event check")
+    event.preventDefault();
+    let key = $(event.currentTarget).closest('div').attr('id') // --> This will be the key
+
+    let value = $('.description').val(); // --> the value (this is what the user writes in the textarea) 
+
+    console.log(key);
+    // console.log(typeof(key));
+    console.log(value);
+
+    localStorage.setItem(key, value);
+
+    //trying to populate the textarea with the notes saved in local storage when browser refreshes
+    let $noteValue = $('.description').val();
+    $noteValue = localStorage.getItem(key);
+
+    // localStorage.getItem(value);
+
+    console.log(localStorage);
+  })
+
+
 
   // HINT: What does `this` reference in the click listener function? 
   
@@ -25,29 +60,13 @@ $(function () {
   // HINT: How can the id attribute of each time-block be used to do this?
 
   // TODO: Add code to display the current date in the header of the page.
-  let todaysDate = new Date();
+  // console.log(dayjs()); //This works
 
-  let currentMonth = todaysDate.getMonth() + 1;
-  let currentDay = todaysDate.getDate();
-
-  const displayDate = () => {
-    let monthSlot;
-    let daySlot;
-    if (currentMonth < 10 ) {
-      monthSlot = 0;
-    } else {
-      monthSlot = '';
-    };
-
-    if (currentDay < 10 ) {
-      daySlot = 0;
-    } else {
-      daySlot = ''
-    }
-
-    return `${todaysDate.getFullYear()} - ${monthSlot} ${currentMonth} / ${daySlot} ${currentDay}`
-  }
-
+  //Location to put todays date
+  const $dateLocation = $('#currentDay')
   
+  $dateLocation.text(dayjs())
+
+  // console.log(dayjs())
 
 });
