@@ -1,24 +1,7 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-let timeBlockNotes = [];
-
-// let localStorageTimeBlockNotes = JSON.parse(localStorage.getItem("TimeBlockNotes"));
-// if (!localStorageTimeBlockNotes) {
-//   localStorageTimeBlockNotes = [];
-// } 
-
-
-//Pushing the score to local storage
-// localStorageTimeBlockNotes.push(note);
-
-//Permanently updates our local storage high scores
-// localStorage.setItem("TimeBlockNotes", JSON.stringify(localStorageTimeBlockNotes))
 
 $(function () {
-  // TODO: Add a listener for click events on the save button. 
 
+  // TODO: Add a listener for click events on the save button. 
   $('.saveBtn').on('click', (event) => {
     //This code should use the id in the containing time-block as a key to save the user input in local storage.
     console.log("save-button click event check")
@@ -34,16 +17,16 @@ $(function () {
     localStorage.setItem(key, value);
 
     //trying to populate the textarea with the notes saved in local storage when browser refreshes
-    let $noteValue = $('.description').val();
-    $noteValue = localStorage.getItem(key);
+    $noteValue = $('.description').val();
+    $noteValueLocalStorage = localStorage.getItem(key);
 
-    // localStorage.getItem(value);
-
-    console.log(localStorage);
+    console.log(`The local storage is: ${JSON.stringify(localStorage)}`);
+    console.log(`The $noteValue is: ${$noteValue}`);
+    console.log(`the $noteValueLocalStorage is: ${$noteValueLocalStorage}`)
+    
   })
 
-
-
+  
   // HINT: What does `this` reference in the click listener function? 
   
   // How can DOM traversal be used to get the "hour-x" id of the time-block containing the button that was clicked? 
@@ -52,7 +35,34 @@ $(function () {
   
   // TODO: Add code to apply the past, present, or future class to each time block by comparing the id to the current hour. 
   // HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes? 
+    //If the id of any div is equal to the day.js().$d, addClass('red)
+    //else if id name of the div is greater than day.js().$d, addClass('green')
+    //else addClass('grey')
+      //Do not need an array, since in jquery $('.time-block') gets all class names from this
   
+  //FOR EACH AS .each
+  //     $('.time-block').each( timeBlock => {
+  //   console.log(timeBlock);
+  // });
+
+  //REGULAR LOOP --> So far this is best, but loops 9 time (9 hours) 9 more times!
+  // for (let i = 0; i < 9; i++) {
+  //   console.log($('.time-block').next('.hour'))
+  // }
+
+  currentHour = dayjs().$H;
+
+  for (let i = 9; i <= 17; i++) {
+    if (i === currentHour) {
+      $(`#${i}`).addClass('present')
+    } else if ( i > currentHour) {
+      $(`#${i}`).addClass('future')
+    } else {
+      $(`#${i}`).addClass('past')
+    }
+  }
+ 
+
   //How can Day.js be used to get the current hour in 24-hour time?
 
   // TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements. 
@@ -65,8 +75,5 @@ $(function () {
   //Location to put todays date
   const $dateLocation = $('#currentDay')
   
-  $dateLocation.text(dayjs())
-
-  // console.log(dayjs())
-
+  $dateLocation.text(dayjs().$d)
 });
