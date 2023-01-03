@@ -34,21 +34,6 @@ $(function () {
   // How might the id be useful when saving the description in local storage?
   
   // TODO: Add code to apply the past, present, or future class to each time block by comparing the id to the current hour. 
-  // HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes? 
-    //If the id of any div is equal to the day.js().$d, addClass('red)
-    //else if id name of the div is greater than day.js().$d, addClass('green')
-    //else addClass('grey')
-      //Do not need an array, since in jquery $('.time-block') gets all class names from this
-  
-  //FOR EACH AS .each
-  //     $('.time-block').each( timeBlock => {
-  //   console.log(timeBlock);
-  // });
-
-  //REGULAR LOOP --> So far this is best, but loops 9 time (9 hours) 9 more times!
-  // for (let i = 0; i < 9; i++) {
-  //   console.log($('.time-block').next('.hour'))
-  // }
 
   currentHour = dayjs().$H;
 
