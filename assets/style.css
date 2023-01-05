@@ -3,6 +3,13 @@ body {
   font-size: 16px;
 }
 
+header {
+  text-align: center;
+  position: relative;
+  top: 50px;
+  margin-top: -80px;
+}
+
 textarea {
   background: transparent;
   border: none;

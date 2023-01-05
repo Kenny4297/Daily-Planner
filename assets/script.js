@@ -37,6 +37,93 @@ $(function () {
     }
   }
   //Displays the current time
-  const $dateLocation = $('#currentDay')
-  $dateLocation.text(dayjs().$d)
+  const $dateLocation = $('#currentDay');
+  // console.log(dayjs().day()); --> This gives the current day (4)
+
+  //Get the day of the week
+  let dayOfTheWeek;
+  switch(dayjs().day()) {
+    case 0:
+      dayOfTheWeek = 'Sunday';
+      break;
+    case 1:
+      dayOfTheWeek = 'Monday';
+      break;
+    case 2:
+      dayOfTheWeek = 'Tuesday';
+      break;
+    case 3:
+      dayOfTheWeek = 'Wednesday';
+      break;
+    case 4:
+      dayOfTheWeek = 'Thursday';
+      break;
+    case 5:
+      dayOfTheWeek = 'Friday';
+      break;
+    case 6:
+      dayOfTheWeek = 'Saturday';
+      break;
+    default:
+      "This didn't work"
+  }
+
+  //Get the month
+  console.log(dayjs().month())
+  let currentMonth;
+  switch(dayjs().month()) {
+    case 0:
+      currentMonth = 'January';
+      break;
+    case 1:
+      currentMonth = 'February';
+      break;
+    case 2:
+      currentMonth = 'March';
+      break;
+    case 3:
+      currentMonth = 'April';
+      break;
+    case 4:
+      currentMonth = 'May';
+      break;
+    case 5:
+      currentMonth = 'June';
+      break;
+    case 6:
+      currentMonth = 'July';
+      break;
+    case 7:
+      currentMonth = 'August';
+      break;
+    case 8:
+      currentMonth = 'September';
+      break;
+    case 9:
+      currentMonth = 'October';
+      break;
+    case 10:
+      currentMonth = 'November';
+      break;
+    case 11:
+      currentMonth = 'December';
+      break;
+    default:
+      "This didn't work"
+  }
+
+  //The days hour
+  // let todaysHour;
+  // switch(dayjs().hour()) {
+  //   case 0 || 13:
+  //     todaysHour = ""
+  // }
+
+  //The response object for dayjs()
+  console.log(dayjs())
+
+  //Testing
+
+  //The final solution I am building to
+  $dateLocation.text(`Today is ${dayOfTheWeek}, ${currentMonth} ${dayjs().$D}`)
 });
