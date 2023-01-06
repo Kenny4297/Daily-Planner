@@ -36,9 +36,8 @@ $(function () {
       $(`#${i}`).addClass('past')
     }
   }
-  //Displays the current time
+  //The location for the date
   const $dateLocation = $('#currentDay');
-  // console.log(dayjs().day()); --> This gives the current day (4)
 
   //Get the day of the week
   let dayOfTheWeek;
@@ -112,18 +111,6 @@ $(function () {
       "This didn't work"
   }
 
-  //The days hour
-  // let todaysHour;
-  // switch(dayjs().hour()) {
-  //   case 0 || 13:
-  //     todaysHour = ""
-  // }
-
-  //The response object for dayjs()
-  console.log(dayjs())
-
-  //Testing
-
-  //The final solution I am building to
+  //Display the date in the header
   $dateLocation.text(`Today is ${dayOfTheWeek}, ${currentMonth} ${dayjs().$D}`)
 });
